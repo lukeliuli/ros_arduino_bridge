@@ -8,7 +8,7 @@
   #ifdef L298N_DUAL_HBRIDGE
     // motor one
     #define ENA 5
-    #define IN1 7
+    #define IN1 7 //注意方向，有可能电机和电机驱动的方向不匹配，所以要IN1,IN2对调，或者编码其输出正负反转.这里采用改变编码器输出正负
     #define IN2 8
     // motor two
     #define ENB 6

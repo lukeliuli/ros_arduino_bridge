@@ -73,7 +73,10 @@ void doPID(SetPointInfo * p) {
   //Perror = p->TargetTicksPerFrame - (p->Encoder - p->PrevEnc);
   input = p->Encoder - p->PrevEnc;
   Perror = p->TargetTicksPerFrame - input;
-
+  Serial.print(input );
+  Serial.print("#");
+  Serial.print(Perror);
+  Serial.print("#");
 
   /*
   * Avoid derivative kick and allow tuning changes,
@@ -121,10 +124,21 @@ void updatePID() {
   }
 
   /* Compute PID update for each motor */
-  doPID(&rightPID);
   doPID(&leftPID);
+  doPID(&rightPID);
+ 
 
   /* Set the motor speeds accordingly */
   setMotorSpeeds(leftPID.output, rightPID.output);
-}
+  Serial.print("(");
+  Serial.print(leftPID.output);
+  Serial.print(" ");
+  Serial.print(rightPID.output);
+  Serial.print(")");
 
+    Serial.print("(");
+  Serial.print(leftPID.Encoder);
+  Serial.print(" ");
+  Serial.print(rightPID.Encoder);
+  Serial.println(")");
+}
